@@ -1,0 +1,63 @@
+.signIn {
+    z-index: -1;
+    background-size: contain;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: radial-gradient(circle, #173f5f, #20639b, #3caea3);
+}
+
+form {
+    background-color: white;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #fff;
+    height: 350px;
+}
+
+form > h2 {
+    text-align: center;
+}
+
+form > h5 {
+    padding: 8px;
+    color: grey;
+}
+
+form > input {
+    width: 90%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    color: #000;
+    border: 1px solid #aaa;
+}
+
+input:hover {
+    color: #000;
+    background-color: #ddd;
+    border: 1px solid #ddd;
+}
+
+form > button {
+    margin-top: 30px;
+    padding: 5px;
+    color: #173f5f;
+    display: block;
+    border-radius: 5px;
+    text-transform: uppercase;
+    background-color: #3caea3;
+    border: 1px solid #3caea3;
+    cursor: pointer;
+}
+
+form > p {
+    margin: 10px;
+    padding: 10px;
+}
+
+a {
+    text-decoration: none;
+}

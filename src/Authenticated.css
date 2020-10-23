@@ -1,0 +1,37 @@
+.profile {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin: 10px;
+    justify-content: center;
+    place-items: center;
+    z-index: -1;
+    background-image: radial-gradient(circle, #173f5f, #20639b, #3caea3);
+}
+
+button {
+    margin-top: 30px;
+    padding: 5px;
+    color: #173f5f;
+    display: block;
+    border-radius: 5px;
+    text-transform: uppercase;
+    background-color: #fff;
+    border: 1px solid #3caea3;
+    cursor: pointer;
+}
+
+h3 {
+    margin: 12px;
+    color: #fff;
+}
+
+.image {
+    margin: 12px;
+    border: 1px solid #3caea3;
+    height: 350px;
+    width: 350px;
+    object-fit: contain;
+    border-radius: 50%;
+}
