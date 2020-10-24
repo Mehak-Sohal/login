@@ -31,7 +31,7 @@ const Authenticated = () => {
     return (
         <div className='profile'>  
           <h3>Hello, {user?.email}</h3>
-          <img src={url} alt='' className='profile-image' />
+          <img src={url} alt='profile-image' className='profile-image' />
         <button onClick={handleAuthentication} >Sign Out</button>
         </div>
     )
