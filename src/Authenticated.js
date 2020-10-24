@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Authenticated.css'
 import { auth, storage } from './firebase'
 import { useHistory } from 'react-router-dom'
@@ -7,6 +7,7 @@ import { useStateValue } from './StateProvider'
 const Authenticated = () => {
     const history = useHistory();
     const [{ user }] = useStateValue();
+    const [url, setUrl] = useState('');
 
     const handleAuthentication = () => {
         if (user) {
@@ -15,21 +16,23 @@ const Authenticated = () => {
         }
     }
 
-    // useEffect(() => {
-    //     auth.onAuthStateChanged(user => {
-    //         if(user) {
-    //             storage.ref('users/' + user.uid + '/profile.jpg').getDownloadURL().then(imgUrl => {
-    //                 image.src = imgUrl;
-    //             })
-    //         }
-    //     })
-    // }, []);
+    useEffect(() => {
+        auth.onAuthStateChanged(user => {
+            if(user) {
+                storage.ref(`users/${user.uid}/profile.jpg`)
+                .getDownloadURL()
+                .then(url => {
+                    console.log(url)
+                    setUrl(url);
+                })
+        }}
+    )}, []);
 
     return (
         <div className='profile'>  
           <h3>Hello, {user?.email}</h3>
-           <div className='image' id='image'></div>
-           <button onClick={handleAuthentication}>Sign Out</button>
+          <img src={url} alt='' className='profile-image' />
+        <button onClick={handleAuthentication} >Sign Out</button>
         </div>
     )
 }

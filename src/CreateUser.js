@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './CreateUser.css'
 import { auth, storage } from './firebase';
 import { useHistory } from 'react-router-dom'
@@ -7,14 +7,15 @@ const CreateUser = () => {
     const history = useHistory();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [profile, setProfile] = useState('');
-
+    const [image, setImage] = useState('');
+    const [url, setUrl] = useState('');
+    
     const signUp = (e) => {
       e.preventDefault();
       auth
         .createUserWithEmailAndPassword(email, password)
         .then((auth) => {
-            storage.ref('users/' + auth.user.uid + '/profile.jpg').put(profile)
+            storage.ref(`users/${auth.user.uid}/profile.jpg`).put(image)
             .then(function() {
                 console.log('successfully upload')
             }) 
@@ -27,19 +28,21 @@ const CreateUser = () => {
 
     const handleChange = (e) => {
         if (e.target.files[0]) {
-            setProfile(e.target.files[0]);
+            setImage(e.target.files[0]);
         }
     }
 
-    // useEffect(() => {
-    //     auth.onAuthStateChanged(user => {
-    //         if(user) {
-    //             storage.ref('users/' + user.uid + '/profile.jpg').getDownloadURL().then(imgUrl => {
-    //                 image.src = imgUrl;
-    //             })
-    //         }
-    //     })
-    // }, []);
+    useEffect(() => {
+        auth.onAuthStateChanged(user => {
+            if(user) {
+                storage.ref(`users/${user.uid}/profile.jpg`)
+                .getDownloadURL()
+                .then(url => {
+                    console.log(url)
+                    setUrl(url);
+                })
+        }}
+    )}, []);
 
     return (
         <div className='signUp'>
