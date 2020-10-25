@@ -15,6 +15,7 @@ form {
     padding: 10px;
     border: 1px solid #fff;
     height: 350px;
+    border-radius: 8px;
 }
 
 form > h2 {
@@ -43,7 +44,7 @@ input:hover {
 
 form > button {
     margin-top: 30px;
-    padding: 5px;
+    padding: 10px;
     color: #173f5f;
     display: block;
     border-radius: 5px;

@@ -8,6 +8,7 @@ const Authenticated = () => {
     const history = useHistory();
     const [{ user }] = useStateValue();
     const [url, setUrl] = useState('');
+    const [loading, setLoading] = useState(true);
 
     const handleAuthentication = () => {
         if (user) {
@@ -31,7 +32,7 @@ const Authenticated = () => {
     return (
         <div className='profile'>  
           <h3>Hello, {user?.email}</h3>
-          <img src={url} alt='profile-image' className='profile-image' />
+          <img src={url} alt='profile-image' className='profile-image' /> 
         <button onClick={handleAuthentication} >Sign Out</button>
         </div>
     )
