@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import './CreateUser.css'
 import { auth, storage } from './firebase';
 import { useHistory } from 'react-router-dom'
@@ -8,10 +8,13 @@ const CreateUser = () => {
     
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [image, setImage] = useState('');
+    const [image, setImage] = useState(null);
     
     const signUp = (e) => {
       e.preventDefault();
+      if (email === '' || password === '' || image === null) {
+        return alert('Please fill all fields');
+    } 
       auth
         .createUserWithEmailAndPassword(email, password)
         .then((auth) => {
@@ -20,13 +23,15 @@ const CreateUser = () => {
                console.log('successfully upload')
                if (auth) {
                 history.push('/authenticated');
-            }
-            })     
+        }
+            })
+            .catch(error => alert(error.message));     
         })
         .catch(error => alert(error.message));
     }
 
     const handleChange = (e) => {
+        e.preventDefault();
         if (e.target.files[0]) {
             setImage(e.target.files[0]);
         }
@@ -41,7 +46,7 @@ const CreateUser = () => {
                     <input type='email' value={email} onChange={e => setEmail(e.target.value)} required />
                     <h5>Password</h5>
                     <input type='password' value={password} onChange={e => setPassword(e.target.value)} required/>
-                    <input type='file' onChange={handleChange} required />
+                    <input type='file' onChange={handleChange} required={true} />
                     <button type='submit' onClick={signUp}>Sign Up</button>
             </form>
           </div>

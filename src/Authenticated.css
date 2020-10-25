@@ -32,15 +32,6 @@ h3 {
     border: 1px solid #3caea3;
     height: 350px;
     width: 350px;
-    object-fit: contain;
-    border-radius: 50%;
-}
-
-.profile-image {
-    margin: 12px;
-    border: 1px solid #3caea3;
-    height: 350px;
-    width: 350px;
     object-fit: cover;
     border-radius: 50%;
 }
